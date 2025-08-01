@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    table {
+        width: 90%;
+        margin: 30px auto;
+        border-collapse: collapse;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 14px 18px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+    th {
+        background-color: #007B8A;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f8f8f8;
+    }
+
+    tr:hover {
+        background-color: #e6f7ff;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007B8A;
+        font-weight: 500;
+        transition: 0.3s ease;
+    }
+
+    a:hover {
+        color: #004c59;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Experience</th>
+        <th>Expertise</th>
+        <th>Contact</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    {% for row in qs %}
+    <tr>
+        <td>{{ row.tname }}</td>
+        <td>{{ row.texperience }}</td>
+        <td>{{ row.texperties }}</td>
+        <td>{{ row.tcontact }}</td>
+        <td><a href="{% url 'teacheredit' row.tname %}">Edit</a></td>
+        <td><a href="{% url 'teacherdelete' row.tname %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 30px auto;
+        background-color: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    th, td {
+        padding: 14px 18px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+    th {
+        background-color: #007B8A;
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+        transition: background-color 0.3s ease;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Student Name</th>
+        <th>Teacher Name</th>
+        <th>Course</th>
+        <th>Date</th>
+        <th>Slot</th>
+    </tr>
+    {% for row in qs %}
+    <tr>
+        <td>{{ row.students }}</td>
+        <td>{{ row.teachers }}</td>
+        <td>{{ row.courses }}</td>
+        <td>{{ row.date }}</td>
+        <td>{{ row.slot }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

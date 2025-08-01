@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    table {
+        width: 90%;
+        margin: 30px auto;
+        border-collapse: collapse;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fff;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 14px 18px;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    th {
+        background-color: #007B8A;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f1faff;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007B8A;
+        font-weight: bold;
+        transition: color 0.2s ease;
+    }
+
+    a:hover {
+        color: #004c59;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Contact</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    {% for row in qs %}
+    <tr>
+        <td>{{ row.Sname }}</td>
+        <td>{{ row.Sage }}</td>
+        <td>{{ row.Scontact }}</td>
+        <td><a href="#">Edit</a></td>
+        <td><a href="{% url 'studentdelete' row.Sname %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

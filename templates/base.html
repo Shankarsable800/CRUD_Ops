@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f0f4f8;
+        }
+
+        .header {
+            background: #004466;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav {
+            background-color: #e0f7fa;
+            border-top: 2px solid #007B8A;
+            border-bottom: 2px solid #007B8A;
+            position: relative;
+            z-index: 20;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 10px 20px;
+            color: #004466;
+            background: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 15px 0;
+        }
+
+        .nav-links span {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #004466;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #007B8A;
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .home-image {
+            margin: 20px auto;
+            text-align: center;
+            max-height: 60vh;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .home-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(224, 247, 250, 0.75); /* Transparent background */
+                z-index: 999;
+                backdrop-filter: blur(5px); /* Optional: glassmorphism effect */
+            }
+
+            .nav.open .nav-links {
+                display: flex;
+            }
+
+            .nav-links span {
+                margin: 10px 0;
+                text-align: left;
+                padding-left: 15px;
+            }
+
+            .nav-links a {
+                font-size: 16px;
+                padding: 10px 15px;
+                display: block;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>Class Management System</h2>
+    </div>
+
+    <!-- ✅ Navigation -->
+    <div class="nav">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="nav-links">
+            <span><a href="{% url 'home' %}">Home</a></span>
+            <span><a href="/addteacher">Add Teacher</a></span>
+            <span><a href="/teacherlist">List Teacher</a></span>
+            <span><a href="/studentadd">Add Student</a></span>
+            <span><a href="/studentlist">List Student</a></span>
+            <span><a href="/joinclass">Join Class</a></span>
+            <span><a href="/classlist">Class List</a></span>
+        </div>
+    </div>
+
+    <!-- ✅ Show Image Only on Home Page -->
+    {% if request.path == "/" %}
+    <div class="home-image">
+        <img src="{% static 'images/img.jpg' %}" alt="Classroom">
+    </div>
+    {% endif %}
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="footer">
+        &copy; 2025 Class Management System. All rights reserved.<br>
+        &copy; Design By Shankar Sable
+    </div>
+
+    <!-- ✅ JS for toggling mobile menu -->
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav').classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

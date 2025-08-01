@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    form {
+        width: 60%;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    table tr td:first-child {
+        font-weight: 600;
+        color: #333;
+        width: 40%;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    select {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    select:focus {
+        border-color: #007B8A;
+        outline: none;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #007B8A;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #005f6b;
+    }
+
+    p {
+        text-align: center;
+        color: #007B8A;
+        font-weight: bold;
+        font-size: 16px;
+    }
+</style>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Student Name</td>
+            <td>
+                <select name="students">
+                    {% for row in qs2 %}
+                    <option value="{{ row.Sname }}">{{ row.Sname }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Teacher Name</td>
+            <td>
+                <select name="teachers">
+                    {% for row in qs1 %}
+                    <option value="{{ row.tname }}">{{ row.tname }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Course</td>
+            <td>
+                <input type="text" name="courses">
+            </td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td><input type="date" name="date"></td>
+        </tr>
+        <tr>
+            <td>Slot</td>
+            <td><input type="time" name="slot"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Submit">
+            </td>
+        </tr>
+    </table>
+</form>
+
+<p>{{ msg }}</p>
+
+{% endblock %}
