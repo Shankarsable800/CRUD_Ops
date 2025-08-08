@@ -5,7 +5,7 @@ The project uses **function-based views** and includes custom models, forms, tem
 
 ---
 
-##Features
+## Features
 
 - Add, edit, and delete **teachers**
 - Add, edit, and delete **students**
